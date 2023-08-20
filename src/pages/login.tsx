@@ -8,13 +8,13 @@ const cookies = new Cookies();
 
 const URL = config.url;
 
-interface User {
-    email: string;
-    password: string;
-    login: boolean;
-    token: string;
-    user: User;
-}
+// interface User {
+//     email: string;
+//     password: string;
+//     login: boolean;
+//     token: string;
+//     user: User;
+// }
 
 const LoginUser: React.FC = () => {
     const [email, setEmail ] = useState('');
@@ -57,7 +57,7 @@ const LoginUser: React.FC = () => {
                 setPassword('');
                 setLogin(true);
                 setToken(result.token);
-                setUser(result); // Update the user context here
+                setUser(result); 
             }
             } else {
             console.log("Login failed");

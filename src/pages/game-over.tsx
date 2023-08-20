@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useContext } from "react";
 import { PrimaryButton } from "../components/buttons";
 import { SecondaryButton } from "../components/buttons";
 import Cookies from "universal-cookie";
