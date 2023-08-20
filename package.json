@@ -25,7 +25,6 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "if [ \"$AZURE_DEPLOYMENT\" != \"true\" ]; then react-scripts test; fi",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
