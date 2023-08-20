@@ -1,0 +1,15 @@
+.text-container {
+    padding-top: 230px;
+    margin: auto;
+    text-align: center;
+}
+
+
+@media (max-width: 768px) {
+
+    .text-container {
+        padding-top: 200px;
+        width: 310px;
+    }
+
+}

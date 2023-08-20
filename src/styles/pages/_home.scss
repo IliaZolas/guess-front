@@ -1,0 +1,28 @@
+.fullwidth {
+    background-image: url('https://source.unsplash.com/random/?digital');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+}
+
+.container-home {
+    height: 100%;
+    display: flex;
+    align-items:center;
+    background-color: rgba(255, 255, 255, 0.884);
+}
+
+.hero-banner {
+    width: 300px;
+    height: 500px;
+    margin: auto ;
+}
+
+.hero-img {
+    margin-top: -100px;
+}
+
+.hero-txt {
+    width: 500px;
+    margin-top: -100px;
+}
