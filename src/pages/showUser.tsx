@@ -32,28 +32,6 @@ const ShowUser: React.FC = () => {
         });
     }, []);
 
-    const deleteUser = async (id: string, public_id: string) => {
-        // console.log("delete:", id);
-        // console.log("delete:", public_id);
-
-        try {
-            const response = await fetch(`${URL}/user/delete/${id}/${public_id}`, {
-                method: 'DELETE',
-            });
-
-            if (response.status === 200) {
-                setUser(null);
-                console.log("User deleted");
-            } else {
-                console.log("User deletion failed");
-            }
-        } catch (error) {
-            console.error("Error deleting user:", error);
-        }
-
-        navigate('/home');
-    };
-
     const updateUser = (id: string) => {
         navigate(`/user/update/${id}`);
     };
