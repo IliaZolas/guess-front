@@ -5,7 +5,7 @@ import Cookies from "universal-cookie";
 import { UserContext } from '../UserContext';
 
 const GameOver: React.FC = () => {
-    const { user, setUser } = useContext(UserContext);
+    const { setUser } = useContext(UserContext);
 
     const logout = () => {
         const cookies = new Cookies();

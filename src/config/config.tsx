@@ -1,5 +1,5 @@
 const production = {
-    url: 'https://your-production-backend-url.app'
+    url: 'https://guessing-game-server.azurewebsites.net/'
   };
   
   const development = {

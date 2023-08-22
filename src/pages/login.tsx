@@ -8,20 +8,12 @@ const cookies = new Cookies();
 
 const URL = config.url;
 
-// interface User {
-//     email: string;
-//     password: string;
-//     login: boolean;
-//     token: string;
-//     user: User;
-// }
-
 const LoginUser: React.FC = () => {
     const [email, setEmail ] = useState('');
     const [password, setPassword] = useState('');
-    const [login, setLogin] = useState(false);
+    // const [login, setLogin] = useState(false);
     const [token, setToken] = useState('');
-    const { user, setUser } = useContext(UserContext);
+    const { setUser } = useContext(UserContext);
     const navigate = useNavigate();
 
     function isError(err: any): err is Error {
@@ -55,7 +47,7 @@ const LoginUser: React.FC = () => {
                 localStorage.setItem('id', userId);
                 setEmail('');
                 setPassword('');
-                setLogin(true);
+                // setLogin(true);
                 setToken(result.token);
                 setUser(result); 
             }
