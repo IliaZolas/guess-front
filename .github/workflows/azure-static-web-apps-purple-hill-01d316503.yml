@@ -35,6 +35,7 @@ jobs:
         env:  # Define environment variables here
           REACT_APP_CLOUDINARY_USERNAME: ${{ secrets.REACT_APP_CLOUDINARY_USERNAME }}
           REACT_APP_CLOUDINARY_PRESET: ${{ secrets.REACT_APP_CLOUDINARY_PRESET }}
+          
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
