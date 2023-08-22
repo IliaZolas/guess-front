@@ -1,0 +1,13 @@
+{
+    "routes": [
+      { "route": "/", "serve": "/index.html", "statusCode": 200 },
+      { "route": "/signup", "serve": "/index.html", "statusCode": 200 },
+      { "route": "/login", "serve": "/index.html", "statusCode": 200 },
+      { "route": "/game", "serve": "/index.html", "statusCode": 200 },
+      { "route": "/game-start", "serve": "/index.html", "statusCode": 200 },
+      { "route": "/game-over", "serve": "/index.html", "statusCode": 200 },
+      { "route": "/user/show/:id", "serve": "/index.html", "statusCode": 200 },
+      { "route": "/user/update/:id", "serve": "/index.html", "statusCode": 200 }
+    ],
+    "fallback": { "route": "/index.html", "statusCode": 200 }
+  }
