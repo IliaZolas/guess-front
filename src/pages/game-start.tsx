@@ -21,6 +21,7 @@ const GameStart: React.FC = () => {
                 // console.log(data);
                 setGameId(data.gameId);
                 setGameNumber(data.gameNumber);
+                sessionStorage.setItem('gameId', data.gameId.toString());
                 sessionStorage.setItem('gameNumber', data.gameNumber.toString());
             })
             .catch((err) => {
@@ -38,6 +39,7 @@ const GameStart: React.FC = () => {
         } else if (inputValue > gameNumber!) {
             setGuessResult("Guess is too high");
         } else {
+            sessionStorage.removeItem('gameId');
             sessionStorage.removeItem('gameNumber');
             navigate("/game-over");
         }
