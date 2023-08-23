@@ -38,8 +38,9 @@ const LoginUser: React.FC = () => {
             const result = await response.json();
             const userEmail = result.email;
             const userId = result.userId;
+            const passwordCheck = result.passwordCheck
         
-            if (userId !== undefined && userEmail !== undefined) {
+            if (userId !== undefined && userEmail !== undefined && passwordCheck !== false) {
                 cookies.set("TOKEN", result.token, {
                 path: "/"
                 });
@@ -50,13 +51,14 @@ const LoginUser: React.FC = () => {
                 // setLogin(true);
                 setToken(result.token);
                 setUser(result); 
-            }
             } else {
-            console.log("Login failed");
+            console.log("Login failed, password or email incorrect");
+            alert("Login failed, password or email incorrect");
             }
-        } catch (err) {
+        }
+     } catch (err) {
             if (isError(err)) {
-                console.log(err.message, ": error message");
+                console.log("password incorrect or missing:",err.message);
             } else {
                 console.log("An unknown error occurred:", err);
             }
