@@ -1,8 +1,12 @@
-import React, { useContext } from "react";
+import React, { useContext} from "react";
 import { PrimaryButton } from "../components/buttons";
 import { SecondaryButton } from "../components/buttons";
 import Cookies from "universal-cookie";
 import { UserContext } from '../UserContext';
+
+import { config } from '../config/config';
+
+const URL = config.url;
 
 const GameOver: React.FC = () => {
     const { setUser } = useContext(UserContext);
