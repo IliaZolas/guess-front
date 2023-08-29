@@ -8,11 +8,13 @@ const Navbar: React.FC = () => {
 
   const logout = () => {
     const cookies = new Cookies();
-    cookies.remove("TOKEN", { path: "/" });
+    cookies.remove("accessToken", { path: "/" });
+    cookies.remove("refreshToken", { path: "/" });
     sessionStorage.clear();
     setUser(null);
   };
 
+  // const email = sessionStorage.getItem('email');
   const id = sessionStorage.getItem('id');
 
   return (
