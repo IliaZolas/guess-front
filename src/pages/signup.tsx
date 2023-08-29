@@ -29,8 +29,6 @@ const AddUser: React.FC = () => {
 
     const uploadUrl = `https://api.cloudinary.com/v1_1/${cloudinaryUsername}/image/upload`
 
-    console.log("cloudinary logs:", cloudinaryUsername, cloudinaryPreset, uploadUrl)
-
     const uploadImage = async (files: ChangeEvent<HTMLInputElement>) => {
         const selectedFile = files.target.files?.[0];
 

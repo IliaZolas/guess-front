@@ -3,8 +3,13 @@ import React from "react";
 // import { UserContext } from '../UserContext';
 // import { config } from '../config/config';
 import { PrimaryButton } from "../components/buttons";
+import Cookies from "universal-cookie";
+const cookie = new Cookies();
 
 const Game: React.FC = () => {
+
+    const token = cookie.get("accessToken");
+    console.log("token in game.tsx page",token)
 
     // const { user } = useContext(UserContext);
 

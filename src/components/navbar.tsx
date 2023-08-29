@@ -9,11 +9,11 @@ const Navbar: React.FC = () => {
   const logout = () => {
     const cookies = new Cookies();
     cookies.remove("TOKEN", { path: "/" });
-    localStorage.clear();
+    sessionStorage.clear();
     setUser(null);
   };
 
-  const id = localStorage.getItem('id');
+  const id = sessionStorage.getItem('id');
 
   return (
     <div className="navbar logged-out">

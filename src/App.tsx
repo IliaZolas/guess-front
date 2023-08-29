@@ -16,17 +16,14 @@ import { config } from './config/config';
 import "./styles/main.scss"
 
 const URL = config.url;
-// console.log('URL shown in App.js', URL);
-// console.log('What environment has been detected? :)', process.env.NODE_ENV);
 
 function App() {
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
-    const id = localStorage.getItem('id');
+    const id = sessionStorage.getItem('id');
 
-    if (id !== null) {
-      // console.log('condition true');
+    if (id!) {
       fetch(`${URL}/user/show/${id}`, {
         method: 'GET',
       })

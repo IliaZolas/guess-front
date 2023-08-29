@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import { config } from '../config/config';
+import Cookies from "universal-cookie";
+const cookie = new Cookies();
 
 interface User {
     _id: string;
@@ -16,12 +18,17 @@ const URL = config.url;
 const ShowUser: React.FC = () => {
     const [user, setUser] = useState<User | null>(null);
     const navigate = useNavigate();
+    const token = cookie.get("accessToken")
 
     useEffect(() => {
-        const id = localStorage.getItem('id');
+        const id = sessionStorage.getItem('id');
 
         fetch(`${URL}/user/show/${id}`, {
             method: 'GET',
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+                'Authorization': `Bearer ${token}`,
+            },
         })
         .then((response) => response.json())
         .then((data: User) => {
@@ -30,7 +37,7 @@ const ShowUser: React.FC = () => {
         .catch((err) => {
             console.log(err.message);
         });
-    }, []);
+    }, [token]);
 
     const updateUser = (id: string) => {
         navigate(`/user/update/${id}`);

@@ -1,33 +1,42 @@
 import React, { useState, useEffect, FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
+import Cookies from "universal-cookie";
 // import { UserContext } from '../UserContext';
 import { config } from '../config/config';
 
 const URL = config.url;
+const cookie = new Cookies();
 
 const GameStart: React.FC = () => {
     // const { user } = useContext(UserContext);
     const navigate = useNavigate();
-
     const [gameId, setGameId] = useState<string>("");
     const [gameNumber, setGameNumber] = useState<number | undefined>();
     const [inputValue, setInputValue] = useState<number | undefined>();
     const [guessResult, setGuessResult] = useState<string | null>(null);
 
+    const token = cookie.get("accessToken")
+    console.log("game-start.tsx token", token);
+    
     useEffect(() => {
-        fetch(`${URL}/start-the-game`)
+        fetch(`${URL}/start-the-game`,  {
+            method: 'GET',
+            // credentials: 'include',
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        })
             .then((response) => response.json())
-            .then((data: { gameId: string; gameNumber: number }) => {
-                // console.log(data);
+            .then((data: { gameId: string; gameNumber: number; }) => {
                 setGameId(data.gameId);
                 setGameNumber(data.gameNumber);
-                sessionStorage.setItem('gameId', data.gameId.toString());
-                sessionStorage.setItem('gameNumber', data.gameNumber.toString());
+                sessionStorage.setItem('gameId', `${data.gameId}`);
+                sessionStorage.setItem('gameNumber', `${data.gameNumber}`);
             })
             .catch((err) => {
                 console.log(err.message);
             });
-    }, []);
+    }, [token]);
 
     const onSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();

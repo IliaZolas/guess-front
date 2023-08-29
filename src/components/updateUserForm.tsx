@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { config } from '../config/config';
 
 import Cookies from "universal-cookie";
-const cookies = new Cookies();
+const cookie = new Cookies();
 
 const URL = config.url;
 
@@ -24,10 +24,16 @@ const UpdateUserForm: React.FC = () => {
   const navigate = useNavigate();
   const params = useParams<{ id: string }>();
 
+  const token = cookie.get("accessToken")
+
   useEffect(() => {
     const id = params.id;
     fetch(`${URL}/user/show/${id}`, {
       method: 'GET',
+      headers: {
+        Authorization: `Bearer ${token}`,
+    },
+      
     })
       .then((response) => response.json())
       .then((data: User) => {
@@ -40,7 +46,7 @@ const UpdateUserForm: React.FC = () => {
       .catch((err) => {
         console.log(err.message);
       });
-  }, [params.id]);
+  }, [params.id, token]);
 
   const cloudinaryUsername = process.env.REACT_APP_CLOUDINARY_USERNAME;
 
@@ -76,7 +82,8 @@ const UpdateUserForm: React.FC = () => {
   };
 
   const updateUser = async (id: string, name: string, surname: string, email: string, imageUrl: string, publicId: string) => {
-    const token = cookies.get("TOKEN");
+    const token = cookie.get("accessToken");
+    console.log("UpdateUserForm.tsx token -->",token)
 
     await fetch(`${URL}/user/update/${id}`, {
       method: 'PUT',
