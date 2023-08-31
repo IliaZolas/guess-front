@@ -5,8 +5,6 @@ import { config } from '../config/config';
 
 const URL = config.url;
 
-console.log(URL)
-
 const LoginUser: React.FC = () => {
     const [email, setEmail ] = useState('');
     const [password, setPassword] = useState('');
