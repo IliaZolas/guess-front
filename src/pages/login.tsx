@@ -5,6 +5,8 @@ import { config } from '../config/config';
 
 const URL = config.url;
 
+console.log(URL)
+
 const LoginUser: React.FC = () => {
     const [email, setEmail ] = useState('');
     const [password, setPassword] = useState('');
@@ -36,32 +38,28 @@ const LoginUser: React.FC = () => {
                 const passwordCheck = result.passwordCheck;
         
                 if (userId !== undefined && userEmail !== undefined && passwordCheck !== false) {
-
-                    // Set HttpOnly cookies
                     document.cookie = `accessToken=${result.accessToken}`;
                     document.cookie = `refreshToken=${result.refreshToken}`;
-                
-                    // Should be session storage
                     sessionStorage.setItem('email', userEmail);
                     sessionStorage.setItem('id', userId);
                     setEmail('');
                     setPassword('');
                     setUser(result);
                     navigate('/game', { state: { token: result.token } });
+                } else {
+                    handleFailedLogin();
                 } 
-            } else {
-                // Handle failed login
-                handleFailedLogin();
             }
         } catch (err) {
             if (isError(err)) {
+                console.log("login has failed")
                 console.log("An unknown error occurred:", err);
             }
         }
     };
 
     const handleFailedLogin = () => {
-        setErrorMessage("Login failed, password or email incorrect"); // Set the error message
+        setErrorMessage("Login failed, password or email incorrect");
     };
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -89,7 +87,7 @@ const LoginUser: React.FC = () => {
                             placeholder="password"
                             onChange={e => setPassword(e.target.value)} />
                     </label>
-                    <div className="error-message">{errorMessage}</div> {/* Display the error message */}
+                    <div className="error-message">{errorMessage}</div>
                     <input type="submit" value="Submit" className="primary-submit-button" />
                 </form>
             </div>

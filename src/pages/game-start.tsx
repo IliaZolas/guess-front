@@ -16,8 +16,7 @@ const GameStart: React.FC = () => {
     const [guessResult, setGuessResult] = useState<string | null>(null);
 
     const token = cookie.get("accessToken")
-    console.log("game-start.tsx token", token);
-    
+
     useEffect(() => {
         fetch(`${URL}/start-the-game`,  {
             method: 'GET',

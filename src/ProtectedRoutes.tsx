@@ -6,7 +6,6 @@ import { config } from "./config/config";
 const ProtectedRoutes = () => {
   const cookies = new Cookies();
   const token = cookies.get("accessToken");
-  console.log("protected routes token:" , token);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
