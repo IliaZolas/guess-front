@@ -22,20 +22,27 @@ function App() {
 
   useEffect(() => {
     const id = sessionStorage.getItem('id');
-
-    if (id!) {
+  
+    if (id) {
       fetch(`${URL}/user/show/${id}`, {
         method: 'GET',
+        credentials: 'include',
       })
-        .then((response) => response.json())
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(`Failed to fetch user data: ${response.status}`);
+          }
+          return response.json();
+        })
         .then((data) => {
-          setUser(data);
+            setUser(data);
         })
         .catch((err) => {
-          console.log(err.message);
+          console.error(err.message);
         });
     }
-  }, []);
+  }, []); 
+  
 
   const value: UserContextProps = useMemo(
     () => ({ user, setUser: setUser as Dispatch<SetStateAction<User | null>> }),
@@ -45,7 +52,7 @@ function App() {
   return (
     <Router>
       <UserContext.Provider value={value}>
-        <div className="App">
+        <div className="App" id="app">
           <Navbar />
           <Routes>
             <Route path="/" element={<Home />} />

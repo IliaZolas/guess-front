@@ -27,6 +27,7 @@ const LoginUser: React.FC = () => {
                 headers: {
                     'Content-type': 'application/json; charset=UTF-8',
                 },
+                credentials: "include",
             });
         
             if (response.ok) {
@@ -36,8 +37,6 @@ const LoginUser: React.FC = () => {
                 const passwordCheck = result.passwordCheck;
         
                 if (userId !== undefined && userEmail !== undefined && passwordCheck !== false) {
-                    document.cookie = `accessToken=${result.accessToken}`;
-                    document.cookie = `refreshToken=${result.refreshToken}`;
                     sessionStorage.setItem('email', userEmail);
                     sessionStorage.setItem('id', userId);
                     setEmail('');
